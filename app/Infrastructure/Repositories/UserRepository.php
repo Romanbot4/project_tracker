@@ -4,10 +4,18 @@ namespace App\Infrastructure\Repositories;
 
 use App\Domain\Entities\UserEntity;
 use App\Domain\Repositories\IUserRepository;
+use App\Infrastructure\Models\UserModel;
 use Exception;
 
 class UserRepository implements IUserRepository
 {
+    protected UserModel $userModel;
+
+    public function __construct(UserModel $userModel)
+    {
+        $this->userModel = $userModel;
+    }
+
     public function create(array $data): UserEntity
     {
         throw new Exception("Not implemented");
@@ -18,9 +26,9 @@ class UserRepository implements IUserRepository
         throw new Exception("Not implemented");
     }
 
-    public function getById(int $id): UserEntity
+    public function getById(string $id): UserEntity
     {
-        throw new Exception("Not implemented");
+        return $this->userModel->getById($id);
     }
 
     public function update(int $id, array $data): UserEntity

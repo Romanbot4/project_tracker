@@ -18,4 +18,10 @@ class UserEntity extends Entity
         "createdAt" => "created_at",
         "updatedAt" => "updated_at",
     ];
+
+    protected $casts = [
+        // "id" => "",
+        // "createdAt" => "integer",
+        // "updateAt" => "integer",
+    ];
 }

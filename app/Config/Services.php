@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Domain\Repositories\IUserRepository;
+use App\Infrastructure\Models\UserModel;
+use App\Infrastructure\Repositories\UserRepository;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -19,14 +22,13 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
-     *
-     *     return new \CodeIgniter\Example();
-     * }
-     */
+
+    public static function userRepository($getShared = true): IUserRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance('userRepository');
+        }
+
+        return new UserRepository(new UserModel());
+    }
 }
