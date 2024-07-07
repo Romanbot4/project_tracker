@@ -2,10 +2,11 @@
 
 namespace App\Infrastructure\Repositories;
 
+use App\Domain\Entities\Request\SignUpRequestEntity;
+use App\Domain\Entities\UpdateUserRequestEntity;
 use App\Domain\Entities\UserEntity;
 use App\Domain\Repositories\IUserRepository;
 use App\Infrastructure\Models\UserModel;
-use Exception;
 
 class UserRepository implements IUserRepository
 {
@@ -16,28 +17,33 @@ class UserRepository implements IUserRepository
         $this->userModel = $userModel;
     }
 
-    public function create(array $data): UserEntity
-    {
-        throw new Exception("Not implemented");
-    }
-
-    public function list(int $page, int $limit): array
-    {
-        throw new Exception("Not implemented");
-    }
-
     public function getById(string $id): UserEntity
     {
         return $this->userModel->getById($id);
     }
 
-    public function update(int $id, array $data): UserEntity
+    public function getByEmail(string $email): UserEntity
     {
-        throw new Exception("Not implemented");
+        return $this->userModel->getByEmail($email);
     }
 
-    public function delete(int $id): UserEntity
+    public function list(array $data): array
     {
-        throw new Exception("Not implemented");
+        return $this->userModel->list($data);
+    }
+
+    public function create(SignUpRequestEntity $form): UserEntity
+    {
+        return  $this->userModel->create($form);
+    }
+
+    public function delete(int $id)
+    {
+        return $this->userModel->delete($id);
+    }
+
+    public function update(int $id, UpdateUserRequestEntity $form): UserEntity
+    {
+        return $this->update($id, $form);
     }
 }

@@ -20,7 +20,7 @@ class DataModel extends Model
     /**
      * @return T
      */
-    public function getById(String $id)
+    public function getById(string $id)
     {
     }
 

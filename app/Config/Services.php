@@ -2,9 +2,19 @@
 
 namespace Config;
 
+use App\Domain\Repositories\IAuthenticationRepository;
+use App\Domain\Repositories\ITokenRepository;
+use App\Domain\Repositories\IUserCredentialRepository;
 use App\Domain\Repositories\IUserRepository;
+use App\Domain\Services\IJwt;
+use App\Infrastructure\Services\Jwt;
 use App\Infrastructure\Models\UserModel;
+use App\Infrastructure\Models\UserCredentialModel;
+use App\Infrastructure\Repositories\AuthenticationRepository;
+use App\Infrastructure\Repositories\TokenRepository;
+use App\Infrastructure\Repositories\UserCredentialRepository;
 use App\Infrastructure\Repositories\UserRepository;
+use App\Infrastructure\Services\JwtAdapter;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -30,5 +40,51 @@ class Services extends BaseService
         }
 
         return new UserRepository(new UserModel());
+    }
+
+    public static function jwt($getShared = true): IJwt
+    {
+        if ($getShared) {
+            return static::getSharedInstance("jwt");
+        }
+        return new Jwt($_ENV["SECRET_KEY"]);
+    }
+
+    public static function tokenRepository($getShared = true): ITokenRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("tokenRepository");
+        }
+
+        return new TokenRepository(static::jwt());
+    }
+
+    public static function userCredentialModel($getShared = true): UserCredentialModel
+    {
+        if ($getShared) {
+            return static::getSharedInstance("userCredentialModel");
+        }
+
+        return new UserCredentialModel();
+    }
+
+    public static function userCredentialRepository($getShared =  true): IUserCredentialRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("userCredentialRepository");
+        }
+        return new UserCredentialRepository(static::userCredentialModel());
+    }
+
+    public static function authenticationRepository($getShared = true): IAuthenticationRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("authenticationRepository");
+        }
+        return new AuthenticationRepository(
+            static::userRepository(),
+            static::userCredentialRepository(),
+            static::tokenRepository(),
+        );
     }
 }

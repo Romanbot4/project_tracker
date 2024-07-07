@@ -6,9 +6,9 @@ use Exception;
 
 class Failure extends Exception
 {
-    public String $reason;
+    public string $reason;
 
-    public function __construct(String $reason)
+    public function __construct(string $reason)
     {
         parent::__construct($reason);
         $this->reason = $reason;

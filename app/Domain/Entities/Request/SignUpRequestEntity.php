@@ -1,25 +1,37 @@
 <?php
 
-namespace App\Domain\Request;
+namespace App\Domain\Entities\Request;
 
-use CodeIgniter\Entity\Entity;
+use App\Domain\Entities\RequestEntity;
 
-class SignUpRequestEntity extends Entity
+class SignUpRequestEntity extends RequestEntity
 {
     public string $firstName;
-    public string $secondName;
-    public string $credential;
+    public string $lastName;
+    public string $email;
     public string $password;
 
-    public function __construct(
-        string $firstName,
-        string $secondName,
-        string $credential,
-        string $password,
-    ) {
-        $this->firstName = $firstName;
-        $this->secondName = $secondName;
-        $this->credential = $credential;
-        $this->password = $password;
+    protected $attributes = [
+        "first_name" => null,
+        "last_name" => null,
+        "email" => null,
+        "password" => null,
+    ];
+
+    protected array $rules = [
+        "first_name" => "required|min_length[3]",
+        "last_name" => "required|min_length[3]",
+        "email" => "required|min_length[8]",
+        "password" => "required|min_length[8]",
+    ];
+
+    public function __construct(array $data)
+    {
+        parent::__construct($data);
+        $this->validate($data);
+        $this->firstName = $data["first_name"];
+        $this->lastName = $data["last_name"];
+        $this->email = $data["email"];
+        $this->password = $data["password"];
     }
 }

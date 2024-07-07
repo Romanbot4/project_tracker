@@ -2,16 +2,28 @@
 
 namespace App\Domain\Entities\Request;
 
-use CodeIgniter\Entity\Entity;
+use App\Domain\Entities\RequestEntity;
 
-class SignInRequestEntity extends Entity
+class SignInRequestEntity extends RequestEntity
 {
-    public string $credential;
+    public string $email;
     public string $password;
 
-    public function __construct(String $credential, string $password)
+    protected $attributes = [
+        "email" => null,
+        "password" => null,
+    ];
+
+    protected $rules = [
+        "email" => "required|min_length[8]|max_length[255]",
+        "password" => "required|max_length[255]",
+    ];
+
+    public function __construct(array $data)
     {
-        $this->credential =  $credential;
-        $this->password = $password;
+        parent::__construct($data);
+        $this->validate($data);
+        $this->email = $data["email"];
+        $this->password = $data["password"];
     }
 }

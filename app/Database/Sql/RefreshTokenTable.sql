@@ -1,0 +1,13 @@
+USE project_tracker;
+
+DROP TABLE IF EXISTS refresh_token;
+
+CREATE TABLE IF NOT EXISTS refresh_token (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ip_address VARCHAR(255),
+    user_agent VARCHAR(255),
+    refresh_token VARCHAR(255) UNIQUE,
+    expire_at DATETIME NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
