@@ -12,6 +12,9 @@ $routes->group('api/v1', function ($routes) {
         $routes->post('', 'UserController::add');
         $routes->get('', 'UserController::list');
     });
+    $routes->group('search', ['namespace' => 'App\Controllers\Api'], function ($routes) {
+        $routes->get('email', 'SearchController::searchUserByEmail');
+    });
     $routes->group('auth', ['namespace' => 'App\Controllers\Api'], function ($routes) {
         $routes->post('sign-up', 'AuthenticationController::signUp');
         $routes->post('sign-in', 'AuthenticationController::signIn');

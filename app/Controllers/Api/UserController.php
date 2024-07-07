@@ -35,10 +35,20 @@ class UserController extends ApiController
         }
     }
 
+    public function getByEmail(): ResponseInterface
+    {
+        try {
+            $email = $this->request->getGet()["email"];
+            $user = $this->userRepository->getByEmail($email);
+        } catch (\Throwable $th) {
+            return $this->resolve($th);
+        }
+    }
+
     public function add()
     {
         try {
-            $form = new SignUpRequestEntity ((array) $this->request->getJSON());
+            $form = new SignUpRequestEntity((array) $this->request->getJSON());
             return $this->ok($this->userRepository->create($form));
         } catch (\Throwable $th) {
             return $this->resolve($th);
