@@ -6,6 +6,7 @@ use App\Core\Failures\BadRequestFailure;
 use App\Core\Failures\NotFoundFailure;
 use App\Domain\Entities\Request\PaginationRequestEntity;
 use App\Domain\Entities\Request\SignUpRequestEntity;
+use App\Domain\Entities\Response\SuccessResponseEntity;
 use App\Domain\Entities\UpdateUserRequestEntity;
 use App\Domain\Entities\UserEntity;
 use CodeIgniter\Model;
@@ -83,5 +84,12 @@ class UserModel extends Model
         $result = $this->db->query($sql, [$form->name, $form->password, $id]);
         if ($result === true) return $this->getById($this->db->insertID());
         throw new BadRequestFailure($this->validation->getErrors());
+    }
+
+    public function remove(int $id): SuccessResponseEntity
+    {
+        $sql = "DELETE FROM users WHERE id=?;";
+        $result = $this->db->query($sql, [$id]);
+        return new SuccessResponseEntity("Successfully deleted the user");
     }
 }

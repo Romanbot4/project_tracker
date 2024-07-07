@@ -6,11 +6,13 @@ use App\Domain\Entities\BaseEntity;
 
 class SuccessResponseEntity extends BaseEntity
 {
-
-    public function jsonSerialize()
+    public string $message;
+    public function __construct(string $message = null)
     {
-        $data = parent::jsonSerialize();
-        $data["success"] = true;
-        return $data;
+        $this->message = $message ?? "Success";
+        parent::__construct([
+            "success" => true,
+            "message" => $this->message
+        ]);
     }
 }

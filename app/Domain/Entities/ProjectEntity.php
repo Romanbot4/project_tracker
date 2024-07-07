@@ -2,10 +2,16 @@
 
 namespace App\Domain\Entities;
 
-use CodeIgniter\Entity\Entity;
+use DateTime;
 
-class ProjectEntity extends Entity
+class ProjectEntity extends BaseEntity
 {
+    public int $id;
+    public string $title;
+    public string $description;
+    public DateTime $createdAt;
+    public DateTime $updatedAt;
+
     protected $attribtes = [
         "id" => null,
         "title" => null,
@@ -24,4 +30,14 @@ class ProjectEntity extends Entity
         "createdAt" => "timestamp",
         "updatedAt" => "timestamp",
     ];
+
+    public function __construct(array $data)
+    {
+        parent::__construct($data);
+        $this->id = $data["id"];
+        $this->title = $data["title"];
+        $this->description = $data["description"];
+        $this->createdAt = new DateTime($data["created_at"]);
+        $this->updatedAt = new DateTime($data["updated_at"]);
+    }
 }

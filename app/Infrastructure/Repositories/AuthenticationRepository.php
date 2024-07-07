@@ -47,12 +47,7 @@ class AuthenticationRepository implements IAuthenticationRepository
     {
         $user = $this->userRepository->create($form);
         $this->userCredentialRepository->create($user->id, $form->password);
-        return new SuccessResponseEntity();
-    }
-
-    public function createAccessToken(string $refreshToken): AccessTokenResponseEntity
-    {
-        throw new Exception("Not Implemented");
+        return new SuccessResponseEntity("Sign up successful.");
     }
 
     public function refreshToken(string $refreshToken): AccessTokenResponseEntity

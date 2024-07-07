@@ -45,7 +45,7 @@ class UserController extends ApiController
         }
     }
 
-    public function add()
+    public function create()
     {
         try {
             $form = new SignUpRequestEntity((array) $this->request->getJSON());

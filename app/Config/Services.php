@@ -3,11 +3,13 @@
 namespace Config;
 
 use App\Domain\Repositories\IAuthenticationRepository;
+use App\Domain\Repositories\IProjectRepository;
 use App\Domain\Repositories\ISearchRepository;
 use App\Domain\Repositories\ITokenRepository;
 use App\Domain\Repositories\IUserCredentialRepository;
 use App\Domain\Repositories\IUserRepository;
 use App\Domain\Services\IJwt;
+use App\Infrastructure\Models\ProjectModel;
 use App\Infrastructure\Services\Jwt;
 use App\Infrastructure\Models\UserModel;
 use App\Infrastructure\Models\UserCredentialModel;
@@ -16,9 +18,8 @@ use App\Infrastructure\Repositories\SearchRepository;
 use App\Infrastructure\Repositories\TokenRepository;
 use App\Infrastructure\Repositories\UserCredentialRepository;
 use App\Infrastructure\Repositories\UserRepository;
-use App\Infrastructure\Services\JwtAdapter;
+use App\Infrastructure\Repositories\ProjectRepository;
 use CodeIgniter\Config\BaseService;
-use PhpParser\Node\Stmt\Static_;
 
 /**
  * Services Configuration file.
@@ -77,6 +78,14 @@ class Services extends BaseService
             return static::getSharedInstance("userCredentialRepository");
         }
         return new UserCredentialRepository(static::userCredentialModel());
+    }
+
+    public static function projectRepository($getShared = true): IProjectRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("projectRepository");
+        }
+        return new ProjectRepository(new ProjectModel());
     }
 
     public static function authenticationRepository($getShared = true): IAuthenticationRepository

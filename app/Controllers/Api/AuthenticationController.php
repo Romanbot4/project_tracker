@@ -6,7 +6,6 @@ use App\Controllers\ApiController;
 use App\Domain\Entities\Request\SignInRequestEntity;
 use App\Domain\Entities\Request\SignUpRequestEntity as RequestSignUpRequestEntity;
 use App\Domain\Repositories\IAuthenticationRepository;
-use App\Domain\Repositories\IUserRepository;
 
 class AuthenticationController extends ApiController
 {

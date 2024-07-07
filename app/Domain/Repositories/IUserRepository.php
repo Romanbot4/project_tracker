@@ -16,7 +16,7 @@ interface IUserRepository
 
     public function create(SignUpRequestEntity $form): UserEntity;
 
-    public function delete(int $id);
+    public function remove(int $id);
 
-    public function update(int $id, UpdateUserRequestEntity $form): UserEntity;
+    public function replace(int $id, UpdateUserRequestEntity $form): UserEntity;
 }

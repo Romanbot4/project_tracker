@@ -37,13 +37,13 @@ class UserRepository implements IUserRepository
         return  $this->userModel->create($form);
     }
 
-    public function delete(int $id)
+    public function remove(int $id)
     {
         return $this->userModel->delete($id);
     }
 
-    public function update(int $id, UpdateUserRequestEntity $form): UserEntity
+    public function replace(int $id, UpdateUserRequestEntity $form): UserEntity
     {
-        return $this->update($id, $form);
+        return $this->replace($id, $form);
     }
 }
