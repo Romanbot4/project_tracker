@@ -3,17 +3,23 @@
 namespace Config;
 
 use App\Domain\Repositories\IAuthenticationRepository;
+use App\Domain\Repositories\IDivisionRepository;
+use App\Domain\Repositories\IFeatureRepository;
 use App\Domain\Repositories\IProjectRepository;
 use App\Domain\Repositories\ISearchRepository;
 use App\Domain\Repositories\ITokenRepository;
 use App\Domain\Repositories\IUserCredentialRepository;
 use App\Domain\Repositories\IUserRepository;
 use App\Domain\Services\IJwt;
+use App\Infrastructure\Models\DivisionModel;
+use App\Infrastructure\Models\FeatureModel;
 use App\Infrastructure\Models\ProjectModel;
 use App\Infrastructure\Services\Jwt;
 use App\Infrastructure\Models\UserModel;
 use App\Infrastructure\Models\UserCredentialModel;
 use App\Infrastructure\Repositories\AuthenticationRepository;
+use App\Infrastructure\Repositories\DivisionRepository;
+use App\Infrastructure\Repositories\FeatureRepository;
 use App\Infrastructure\Repositories\SearchRepository;
 use App\Infrastructure\Repositories\TokenRepository;
 use App\Infrastructure\Repositories\UserCredentialRepository;
@@ -46,30 +52,13 @@ class Services extends BaseService
         return new UserRepository(new UserModel());
     }
 
-    public static function jwt($getShared = true): IJwt
-    {
-        if ($getShared) {
-            return static::getSharedInstance("jwt");
-        }
-        return new Jwt($_ENV["SECRET_KEY"]);
-    }
-
     public static function tokenRepository($getShared = true): ITokenRepository
     {
         if ($getShared) {
             return static::getSharedInstance("tokenRepository");
         }
 
-        return new TokenRepository(static::jwt());
-    }
-
-    public static function userCredentialModel($getShared = true): UserCredentialModel
-    {
-        if ($getShared) {
-            return static::getSharedInstance("userCredentialModel");
-        }
-
-        return new UserCredentialModel();
+        return new TokenRepository(new Jwt($_ENV["SECRET_KEY"]));
     }
 
     public static function userCredentialRepository($getShared =  true): IUserCredentialRepository
@@ -77,7 +66,15 @@ class Services extends BaseService
         if ($getShared) {
             return static::getSharedInstance("userCredentialRepository");
         }
-        return new UserCredentialRepository(static::userCredentialModel());
+        return new UserCredentialRepository(new UserCredentialModel());
+    }
+
+    public static function divisionRepository($getShared =  true): IDivisionRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("divisionRepository");
+        }
+        return new DivisionRepository(new DivisionModel());
     }
 
     public static function projectRepository($getShared = true): IProjectRepository
@@ -107,5 +104,14 @@ class Services extends BaseService
         }
 
         return new SearchRepository(static::userRepository());
+    }
+
+    public static function featureRepository($getShared = false): IFeatureRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("featureRepository");
+        }
+
+        return new FeatureRepository(new FeatureModel());
     }
 }

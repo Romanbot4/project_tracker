@@ -23,6 +23,24 @@ $routes->group('api/v1', function ($routes) {
         $routes->put('(:any)', 'ProjectController::replace/$1');
         $routes->delete('(:any)', 'ProjectController::remove/$1');
     });
+    $routes->group('division', ['namespace' => 'App\Controllers\Api'], function ($routes) {
+        $routes->post('', 'DivisionController::create');
+        $routes->get('', 'DivisionController::list');
+        $routes->get('(:any)', 'DivisionController::select/$1');
+        $routes->put('(:any)', 'DivisionController::replace/$1');
+        $routes->delete('(:any)', 'DivisionController::remove/$1');
+    });
+    $routes->group('feature', ['namespace' => 'App\Controllers\Api'], function ($routes) {
+        $routes->post('', 'FeatureController::create');
+        $routes->get('', 'FeatureController::list');
+        $routes->get('(:any)', 'FeatureController::select/$1');
+        $routes->put('(:any)', 'FeatureController::replace/$1');
+        $routes->delete('(:any)', 'FeatureController::remove/$1');
+    });
+
+    $routes->group('project-features', ['namespace' => 'App\Controllers\Api'], function ($routes) {
+        $routes->get('(:any)', 'FeatureController::listByProject/$1');
+    });
     $routes->group('search', ['namespace' => 'App\Controllers\Api'], function ($routes) {
         $routes->get('email', 'SearchController::searchUserByEmail');
     });

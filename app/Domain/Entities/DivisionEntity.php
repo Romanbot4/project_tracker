@@ -4,11 +4,12 @@ namespace App\Domain\Entities;
 
 use CodeIgniter\Entity\Entity;
 
-class DivisionEntity extends Entity
+class DivisionEntity extends BaseEntity
 {
     protected $attributes = [
         "id" => null,
         "title" => null,
+        "description" => null,
         "createdAt" => null,
         "updatedAt" => null,
     ];

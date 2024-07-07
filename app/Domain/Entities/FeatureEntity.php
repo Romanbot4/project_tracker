@@ -2,9 +2,7 @@
 
 namespace App\Domain\Entities;
 
-use CodeIgniter\Entity\Entity;
-
-class FeatureEntity extends Entity
+class FeatureEntity extends BaseEntity
 {
     protected $attributes = [
         "id" => null,
