@@ -5,7 +5,13 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'HomeController::index');
+$routes->get('/', 'HomeViewController::index');
+$routes->get('/login', 'AuthViewController::login');
+$routes->post('/login', 'AuthViewController::loginRequest');
+$routes->get('/sign-up', 'AuthViewController::signUp');
+$routes->post('/sign-up', 'AuthViewController::signUpRequest');
+
+
 $routes->group('api/v1', function ($routes) {
     $routes->group('user', ['namespace' => 'App\Controllers\Api'], function ($routes) {
         $routes->get('(:any)', 'UserController::getById/$1');

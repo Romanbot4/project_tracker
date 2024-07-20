@@ -1,0 +1,138 @@
+:root {
+  --max-width: 1200px;
+
+  --clr-primary: hsl(277, 86%, 50%);
+  --clr-secondary: hsl(342, 93%, 65%);
+  --clr-white: hsl(60, 100%, 99%);
+  --clr-black: hsl(0, 0%, 0%);
+  --clr-blue: hsl(204, 91%, 54%);
+  --clr-red: hsl(0, 89%, 54%);
+  --clr-softer-grey: hsl(45, 33%, 97%);
+  --clr-soft-grey: hsl(45, 18%, 92%);
+  --clr-grey: hsl(45, 6%, 58%);
+  --clr-dark-grey: hsl(45, 4%, 44%);
+  --clr-darker-grey: hsl(45, 3%, 26%);
+  --clr-off-black: hsl(0, 0%, 8%);
+
+  --clr-primary-900: hsl(277, 86%, 90%);
+  --clr-primary-800: hsl(277, 86%, 80%);
+  --clr-primary-700: hsl(277, 86%, 70%);
+  --clr-primary-600: hsl(277, 86%, 60%);
+  --clr-primary-500: hsl(277, 86%, 50%);
+  --clr-primary-400: hsl(277, 86%, 40%);
+  --clr-primary-300: hsl(277, 86%, 30%);
+  --clr-primary-200: hsl(277, 86%, 20%);
+  --clr-primary-100: hsl(277, 86%, 10%);
+
+  --clr-neutral-900: hsl(232, 12%, 13%);
+  --clr-neutral-700: hsl(232, 12%, 30%);
+  --clr-neutral-400: hsl(232, 12%, 54%);
+  --clr-neutral-300: hsl(232, 12%, 75%);
+  --clr-neutral-200: hsl(232, 12%, 84%);
+  --clr-neutral-100: hsl(0 0% 100%);
+
+  --ff-primary: "Be Vietnam Pro", sans-serif;
+
+  --fs-200: 0.625rem;
+  --fs-300: 0.75rem;
+  --fs-400: 0.875rem;
+  --fs-500: 1rem;
+  --fs-600: 1.125rem;
+  --fs-700: 1.5rem;
+  --fs-800: 2.5rem;
+  --fs-900: 3.5rem;
+
+  --fw-w100: 100;
+  --fw-w200: 200;
+  --fw-w300: 300;
+  --fw-w400: 400;
+  --fw-w500: 500;
+  --fw-w600: 600;
+  --fw-w700: 700;
+  --fw-w800: 800;
+  --fw-w900: 900;
+
+  --fw-thin: var(--fw-w100);
+  --fw-extraLight: var(--fw-w200);
+  --fw-light: var(--fw-w300);
+  --fw-regular: var(--fw-w400);
+  --fw-medium: var(--fw-w500);
+  --fw-semiBold: var(--fw-w600);
+  --fw-bold: var(--fw-w700);
+  --fw-extraBold: var(--fw-w800);
+  --fw-black: var(--fw-w900);
+
+  --size-50: 0.25rem;
+  --size-100: 0.5rem;
+  --size-200: 1rem;
+  --size-300: 1.5rem;
+  --size-400: 2rem;
+  --size-500: 2.5rem;
+  --size-600: 3rem;
+  --size-700: 3.5rem;
+  --size-800: 4rem;
+  --size-900: 4.5rem;
+
+  --insets-xxs: var(--size-50);
+  --insets-xs: var(--size-100);
+  --insets-sm: var(--size-200);
+  --insets-md: var(--size-300);
+  --insets-lg: var(--size-400);
+  --insets-xl: var(--size-600);
+  --insets-xxl: var(--size-700);
+  --insets-offset: var(--size-900);
+
+  --corner-sm: var(--size-50);
+  --corner-md: var(--size-100);
+  --corner-lg: var(--size-200);
+  --corner-xl: var(--size-400);
+  --corner-xxl: var(--size-600);
+
+  --clr-scaffold: var(--clr-softer-grey);
+  --clr-card: var(--clr-white);
+
+  --clr-disabled: var(--clr-soft-grey);
+  --clr-on-primary: var(--clr-neutral-100);
+  --clr-on-surface: var(--clr-neutral-900);
+  --clr-divider: var(--clr-neutral-200);
+  --clr-caption: var(--clr-neutral-400);
+  --clr-overlay: hsl(0, 0%, 0%, 0.3);
+
+  --ff-body: var(--ff-primary);
+  --ff-heading: var(--ff-primary);
+
+  --fs-heading-1: var(--fs-800);
+  --fs-heading-2: var(--fs-700);
+  --fs-heading-3: var(--fs-500);
+
+  --fs-body-1: var(--fs-500);
+  --fs-body-2: var(--fs-400);
+  --fs-body-3: var(--fs-300);
+
+  --z-header: 1000;
+  --z-sidebar: 2000;
+
+  --insets-column-margin: var(--insets-sm);
+  --insets-header-wordmark: var(--insets-sm);
+
+  --gap-column: var(--insets-xs);
+
+  --scale: 1;
+}
+
+@media (min-width: 40em) {
+  :root {
+    --fs-heading-1: var(--fs-700);
+    --fs-heading-2: var(--fs-500);
+
+    --insets-column-margin: var(--insets-md);
+    --gap-column: var(--insets-sm);
+    --insets-header-wordmark: var(--insets-xl);
+    --scale: 1.2;
+  }
+}
+
+.logo-word-mark {
+  width: calc(var(--size-100) * 22);
+  object-fit: contain;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "project_tracker",
+  "version": "1.0.0",
+  "description": "Project tracker project is one of Mg Kyaw Pyae Phyo's portfolio projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Romanbot4 (aka Mg Kyaw Pyae Phyo)",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}

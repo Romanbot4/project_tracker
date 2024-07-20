@@ -31,7 +31,7 @@ class TokenRepository implements ITokenRepository
             "sub" => $user->id,
             "name" => $user->displayName,
             "iat" => time(),
-            "exp" => time() + 20,//(24 * 60 * 60 * 1000),
+            "exp" => time() + (24 * 60 * 60 * 1000),
         ]);
         $refreshToken = $this->jwt->encode([
             "token" => $accessToken,

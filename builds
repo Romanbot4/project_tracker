@@ -16,7 +16,7 @@ define('GITHUB_URL', 'https://github.com/codeigniter4/codeigniter4');
 
 // Determine the requested stability
 if (empty($argv[1]) || ! in_array($argv[1], ['release', 'development'], true)) {
-    echo 'Usage: php builds [release|development]' . PHP_EOL;
+    echo 'Usage: php builds [release|develoent]' . PHP_EOL;
 
     exit;
 }

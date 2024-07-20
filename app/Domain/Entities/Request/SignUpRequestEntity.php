@@ -10,12 +10,14 @@ class SignUpRequestEntity extends RequestEntity
     public string $lastName;
     public string $email;
     public string $password;
+    public string $confirmPassword;
 
     protected $attributes = [
         "first_name" => null,
         "last_name" => null,
         "email" => null,
         "password" => null,
+        "confirm_password" => null,
     ];
 
     protected array $rules = [
@@ -23,6 +25,7 @@ class SignUpRequestEntity extends RequestEntity
         "last_name" => "required|min_length[3]",
         "email" => "required|min_length[8]",
         "password" => "required|min_length[8]",
+        "confirm_password" => "required|min_length[8]|matches[password]",
     ];
 
     public function __construct(array $data)
@@ -33,5 +36,6 @@ class SignUpRequestEntity extends RequestEntity
         $this->lastName = $data["last_name"];
         $this->email = $data["email"];
         $this->password = $data["password"];
+        $this->confirmPassword = $data["confirm_password"];
     }
 }
