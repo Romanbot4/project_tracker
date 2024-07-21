@@ -8,7 +8,7 @@ use App\Domain\Entities\UserEntity;
 class SignInResponseEntity extends BaseEntity
 {
     public UserEntity $user;
-    public AccessTokenResponseEntity $autorization;
+    public AccessTokenResponseEntity $authorization;
 
     public function __construct(UserEntity $user, AccessTokenResponseEntity $authorization)
     {

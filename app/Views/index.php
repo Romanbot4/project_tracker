@@ -11,12 +11,13 @@ helper("svg_icon");
     <title>Project Tracker</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
+    <script src="js/dropdown.js" defer></script>
 </head>
 
 <body>
-    <?php
-        echo view("components/header")
-    ?>
+    <?php echo view("components/header/header"); ?>
 </body>
 
 </html>

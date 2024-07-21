@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\AuthenticationFilter;
+use App\Filters\AuthenticationViewFilter;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -36,6 +37,7 @@ class Filters extends BaseFilters
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
         'auth' => AuthenticationFilter::class,
+        'authView' => AuthenticationViewFilter::class,
     ];
 
     /**
@@ -105,7 +107,8 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [       
-        'auth' => ['before' => ['*/user*'] , "except" => ['*/user/email*']]
+    public array $filters = [
+        'auth' => ['before' => ['*/user*'], "except" => ['*/user/email*']],
+        'authView' => ['before' => ['/']],
     ];
 }

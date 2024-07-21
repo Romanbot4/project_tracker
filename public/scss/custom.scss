@@ -3,5 +3,9 @@ $secondary: #A341EF;
 $light: #F4E8FD;
 $dark: #0E0217;
 
+:root {
+    --bs-dropdown-divider-bg: rgba(0, 0, 0, 0.1);
+    --bs-dropdown-divider-margin-y: 0.25rem;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";

@@ -27,15 +27,17 @@
                             About
                         </a>
                     </li>
+                    <?php echo view(
+                        empty($user) ?
+                            "components/header/auth_action_nav_item" :
+                            "components/header/user_nav_item"
+                    ); ?>
                 </ul>
-                <div class="d-flex">
-                    <button class="btn me-2" onclick="window.location.href='<?php echo base_url('login') ?>'">
-                        Sign in
-                    </button>
-                    <button class="btn btn-primary" onclick="window.location.href='<?php echo base_url('sign-up') ?>'">
-                        Sign up
-                    </button>
-                </div>
+                <?php echo view(
+                    empty($user) ?
+                        "components/header/auth_action_buttons" :
+                        "components/header/user_action_button"
+                ); ?>
             </div>
         </div>
     </nav>

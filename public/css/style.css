@@ -26,6 +26,7 @@
 
   --clr-neutral-900: hsl(232, 12%, 13%);
   --clr-neutral-700: hsl(232, 12%, 30%);
+  --clr-neutral-600: hsl(232, 12%, 42%);
   --clr-neutral-400: hsl(232, 12%, 54%);
   --clr-neutral-300: hsl(232, 12%, 75%);
   --clr-neutral-200: hsl(232, 12%, 84%);
@@ -118,6 +119,8 @@
   --gap-column: var(--insets-xs);
 
   --scale: 1;
+
+  --header-height: calc(var(--size-100) * 7);
 }
 
 @media (min-width: 40em) {
@@ -134,5 +137,52 @@
 
 .logo-word-mark {
   width: calc(var(--size-100) * 22);
+  height: var(--header-height);
   object-fit: contain;
+}
+
+.avatar-card {
+  aspect-ratio: 1;
+  padding: var(--size-100);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  border: none;
+}
+
+.avatar-card .bi {
+  width: var(--size-300);
+  height: var(--size-300);
+}
+
+._dropdown {
+  position: relative;
+}
+
+._dropdown.active > ._dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+._dropdown-content {
+  display: none;
+  position: absolute;
+  float: left;
+  right: 0;
+}
+
+._dropdown-content ul li {
+  list-style: none;
+}
+
+._dropdown-content a {
+  text-decoration: none;
+}
+
+._dropdown-content a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.fs-caption {
+  font-size: var(--fs-300);
 }

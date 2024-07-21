@@ -6,15 +6,17 @@ use App\Domain\Entities\Request\SignInRequestEntity;
 use App\Core\Failures\BadRequestFailure;
 use App\Domain\Entities\Request\SignUpRequestEntity;
 use App\Infrastructure\Repositories\AuthenticationRepository;
-use CodeIgniter\HTTP\ResponseInterface;
+use Config\Services;
+use CodeIgniter\Session\Session;
 use Throwable;
 
 class AuthViewController extends BaseController
 {
     private AuthenticationRepository $authenticationRepository;
-
+    private Session $session;
     public function __construct(AuthenticationRepository $authenticationRepository = null)
     {
+        $this->session = Services::session();
         $this->authenticationRepository = $authenticationRepository ?? \Config\Services::authenticationRepository();
     }
 
@@ -36,6 +38,11 @@ class AuthViewController extends BaseController
                 "password" => $this->request->getPost("password"),
             ]);
             $result = $this->authenticationRepository->signIn($signInRequest);
+
+            $session = Services::session();
+            $session->set("user", $result->user);
+            $session->set("authorization", $result->authorization);
+
             return redirect("/");
         } catch (BadRequestFailure $e) {
             print_r($e->errors);
@@ -72,9 +79,7 @@ class AuthViewController extends BaseController
         } catch (Throwable $e) {
             print_r($e);
             return view('sign_up', [
-                "errors" => [
-                    "password" => "Email or password is incorrect"
-                ],
+                "errors" => ["password" => "Email or password is incorrect"],
             ]);
         }
     }
