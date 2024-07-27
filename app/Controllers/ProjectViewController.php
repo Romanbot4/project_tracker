@@ -38,7 +38,7 @@ class ProjectViewController extends BaseController
 
 
     public function removeByIdsRequest() {
-        $ids = $this->request->getPost()["ids"] ?? [];
+        $ids = $this->request->getPost()["items"] ?? [];
         $this->projectRepository->removeByIds($ids);
         return redirect("projects");
     }

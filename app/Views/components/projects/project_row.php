@@ -2,7 +2,7 @@
 ?>
 
 <tr>
-    <td><input type="checkbox" name="" id="<?php echo $project->id ?>"></td>
+    <td><input type="checkbox" name="items[]" value="<?php echo $project->id ?>" id="<?php echo $project->id ?>"></td>
     <th><?php echo $project->id ?></th>
     <td><?php echo $project->title ?></td>
     <td><?php

@@ -1,0 +1,7 @@
+[data-select-state-target][selected] [data-select-show] {
+  display: block !important;
+}
+
+[data-select-state-target][selected="multiple"] [data-select-multiple-show] {
+  display: block !important;
+}

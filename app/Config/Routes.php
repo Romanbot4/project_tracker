@@ -21,6 +21,7 @@ $routes->post('/sign-up', 'AuthViewController::signUpRequest');
 $routes->get('/projects', 'ProjectViewController::projects');
 $routes->get('/create-project', 'ProjectViewController::createProject');
 $routes->post('/create-project', 'ProjectViewController::createProjectRequest');
+$routes->post('/delete-projects-by-ids', 'ProjectViewController::removeByIdsRequest');
 
 
 $routes->group('api/v1', function ($routes) {

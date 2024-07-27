@@ -33,11 +33,10 @@ selectAllTargets.forEach((target) => {
     target.addEventListener("change", updateSelectedCount);
 })
 
-selectAllToggle.addEventListener("change", (event) => {
+selectAllToggle.addEventListener("change", () => {
     let isChecked = selectAllToggle.checked;
     selectAllTargets.forEach((checkbox) => {
         checkbox.checked = isChecked;
-        checkbox.value = checkbox.checked === true ? "checked" : "unchecked";
     });
 
     updateSelectedCount();

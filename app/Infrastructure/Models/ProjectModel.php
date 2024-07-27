@@ -62,8 +62,9 @@ class ProjectModel extends Model
 
     public function removeByIds(array $ids)
     {
-        $sql = "DELETE FROM projects WHERE id in (?);";
-        $result = $this->db->query($sql, [implode(',', $ids)]);
+        $selection = implode(',', $ids);
+        $sql = "DELETE FROM projects WHERE id IN (".$selection.");";
+        $result = $this->db->query($sql, [$selection]);
         return new SuccessResponseEntity("Successfully deleted the project");
     }
 }
