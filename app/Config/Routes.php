@@ -5,11 +5,22 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+//Home
 $routes->get('/', 'HomeViewController::index');
+$routes->get('/reports', 'HomeViewController::reports');
+$routes->get('/about', 'HomeViewController::about');
+
+//Auth
 $routes->get('/login', 'AuthViewController::login');
 $routes->post('/login', 'AuthViewController::loginRequest');
 $routes->get('/sign-up', 'AuthViewController::signUp');
 $routes->post('/sign-up', 'AuthViewController::signUpRequest');
+
+//Project
+$routes->get('/projects', 'ProjectViewController::projects');
+$routes->get('/create-project', 'ProjectViewController::createProject');
+$routes->post('/create-project', 'ProjectViewController::createProjectRequest');
 
 
 $routes->group('api/v1', function ($routes) {

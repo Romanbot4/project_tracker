@@ -1,10 +1,8 @@
-<?php
-helper("svg_icon");
+<?php helper("svg_icon");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,13 +13,10 @@ helper("svg_icon");
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
     <script src="js/dropdown.js" defer></script>
 </head>
-
 <body>
     <?php echo view("components/header/header"); ?>
-
     <main>
-        home
+        about
     </main>
 </body>
-
 </html>

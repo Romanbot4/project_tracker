@@ -1,4 +1,4 @@
-<div class="_dropdown active" data-dropdown>
+<div class="_dropdown" data-dropdown>
     <button type="button" class="avatar-card rounded-5 border bg-white" data-dropdown-button>
         <i class="bi bi-person-circle"></i>
     </button>

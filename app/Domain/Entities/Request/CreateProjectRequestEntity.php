@@ -12,11 +12,15 @@ class CreateProjectRequestEntity extends RequestEntity
     protected $attributes = [
         "title" => null,
         "description" => null,
+        "startAt" => null,
+        "endAt" => null,
     ];
 
     protected $rules = [
         "title" => "required|min_length[3]|max_length[255]",
-        "description" => "min_length[3]|max_length[255]",
+        "description" => "permit_empty|min_length[3]|max_length[255]",
+        "end_at" => "required|today_or_future_date",
+        "start_at" => "permit_empty|today_or_future_date"
     ];
 
     public function __construct(array $data)

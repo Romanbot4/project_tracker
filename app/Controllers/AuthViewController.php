@@ -22,11 +22,21 @@ class AuthViewController extends BaseController
 
     public function login()
     {
+        $user = $this->session->get("user");
+        if($user != null) {
+            return redirect("/");
+        }
+
         return view('login');
     }
 
     public function signUp()
     {
+        $user = $this->session->get("user");
+        if($user != null) {
+            return redirect("/");
+        }
+        
         return view('sign_up');
     }
 
@@ -39,9 +49,8 @@ class AuthViewController extends BaseController
             ]);
             $result = $this->authenticationRepository->signIn($signInRequest);
 
-            $session = Services::session();
-            $session->set("user", $result->user);
-            $session->set("authorization", $result->authorization);
+            $this->session->set("user", $result->user);
+            $this->session->set("authorization", $result->authorization);
 
             return redirect("/");
         } catch (BadRequestFailure $e) {

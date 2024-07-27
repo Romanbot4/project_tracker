@@ -20,7 +20,7 @@ class ProjectRepository implements IProjectRepository
         return $this->projectModel->getById($id);
     }
 
-    public function list(array $data): array
+    public function list(?array $data): array
     {
         return $this->projectModel->list($data);
     }
@@ -33,6 +33,10 @@ class ProjectRepository implements IProjectRepository
     public function remove(int $id)
     {
         return $this->projectModel->remove($id);
+    }
+
+    public function removeByIds(array $ids) {
+        return $this->projectModel->removeByIds($ids);
     }
 
     public function replace(int $id, CreateProjectRequestEntity $form): ProjectEntity

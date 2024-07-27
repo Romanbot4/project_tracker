@@ -59,4 +59,11 @@ class ProjectModel extends Model
         $result = $this->db->query($sql, [$id]);
         return new SuccessResponseEntity("Successfully deleted the project");
     }
+
+    public function removeByIds(array $ids)
+    {
+        $sql = "DELETE FROM projects WHERE id in (?);";
+        $result = $this->db->query($sql, [implode(',', $ids)]);
+        return new SuccessResponseEntity("Successfully deleted the project");
+    }
 }

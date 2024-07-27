@@ -14,5 +14,7 @@ interface IProjectRepository
 
     public function remove(int $id);
 
+    public function removeByIds(array $ids);
+
     public function replace(int $id, CreateProjectRequestEntity $form): ProjectEntity;
 }
