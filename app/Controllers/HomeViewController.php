@@ -6,6 +6,8 @@ use App\Domain\Entities\UserEntity;
 use CodeIgniter\Session\Session;
 use Config\Services;
 
+helper("svg_icon");
+
 class HomeViewController extends BaseController
 {
     private Session $session;

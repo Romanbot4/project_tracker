@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Domain\Repositories;
+
+use App\Domain\Entities\PaginatedResponseEntity;
 use App\Domain\Entities\ProjectEntity;
 use App\Domain\Entities\Request\CreateProjectRequestEntity;
+use App\Domain\Entities\Request\PaginationRequestEntity;
 
 interface IProjectRepository
 {
     public function getById(string $id): ProjectEntity;
 
-    public function list(array $data): array;
+    public function list(PaginationRequestEntity $data): PaginatedResponseEntity;
+
+    public function getRowCount(): int;
 
     public function create(CreateProjectRequestEntity $form): ProjectEntity;
 

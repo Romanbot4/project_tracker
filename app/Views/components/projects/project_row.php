@@ -1,5 +1,18 @@
 <?php
+if ($project == null) {
+    echo "<tr>"
+        . "  <td>&nbsp;</td>"
+        . "  <th></th>"
+        . "  <td></td>"
+        . "  <td></td>"
+        . "  <td></td>"
+        . "  <td></td>"
+        . "</tr>";
+    return;
+}
+
 ?>
+
 
 <tr>
     <td><input type="checkbox" name="items[]" value="<?php echo $project->id ?>" id="<?php echo $project->id ?>"></td>

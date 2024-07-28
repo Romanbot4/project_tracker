@@ -32,11 +32,18 @@ class ProjectModel extends Model
         throw new NotFoundFailure();
     }
 
-    public function list(array $data): array
+    public function getRowCount(): int
     {
-        $pagination = new PaginationRequestEntity($data);
+        $sql = "SELECT COUNT(*) FROM projects";
+        $query = $this->db->query($sql);
+        $value = $query->getResult('array');
+        return array_values($value[0])[0];
+    }
+
+    public function list(PaginationRequestEntity $pagination): array
+    {
         $sql = "SELECT * FROM projects LIMIT ? OFFSET ?;";
-        $query = $this->db->query($sql, [$pagination->limit, $pagination->getOffset()]);
+        $query = $this->db->query($sql, [$pagination->limit, $pagination->offset]);
         $result = $query->getResult();
         $value = [];
         foreach ($result as $row) {
@@ -63,7 +70,7 @@ class ProjectModel extends Model
     public function removeByIds(array $ids)
     {
         $selection = implode(',', $ids);
-        $sql = "DELETE FROM projects WHERE id IN (".$selection.");";
+        $sql = "DELETE FROM projects WHERE id IN (" . $selection . ");";
         $result = $this->db->query($sql, [$selection]);
         return new SuccessResponseEntity("Successfully deleted the project");
     }

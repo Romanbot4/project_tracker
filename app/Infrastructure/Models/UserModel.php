@@ -69,7 +69,7 @@ class UserModel extends Model
     {
         $pagination = new PaginationRequestEntity($data);
         $sql = "SELECT * FROM users LIMIT ? OFFSET ?;";
-        $query = $this->db->query($sql, [$pagination->limit, $pagination->getOffset()]);
+        $query = $this->db->query($sql, [$pagination->limit, $pagination->offset]);
         $result = $query->getResult();
         $value = [];
         foreach ($result as $row) {

@@ -3,10 +3,14 @@
 namespace App\Controllers\Api;
 
 use App\Controllers\ApiController;
+use App\Domain\Entities\PaginatedResponseEntity;
 use App\Domain\Entities\Request\CreateProjectRequestEntity;
+use App\Domain\Entities\Request\PaginationRequestEntity;
 use App\Domain\Repositories\IProjectRepository;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
+
+helper("pagination");
 
 class ProjectController extends ApiController
 {
@@ -49,7 +53,9 @@ class ProjectController extends ApiController
     public function list(): ResponseInterface
     {
         try {
-            return $this->ok($this->projectRepository->list($this->request->getGet()));
+            $pageRequest = new PaginationRequestEntity((array)$this->request->getGet());
+            $res = $this->projectRepository->list($pageRequest);
+            return $this->ok($res);
         } catch (\Throwable $th) {
             return $this->resolve($th);
         }

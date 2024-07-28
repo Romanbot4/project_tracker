@@ -186,3 +186,7 @@
 .fs-caption {
   font-size: var(--fs-300);
 }
+
+.min-width {
+  width: min-content !important;
+}

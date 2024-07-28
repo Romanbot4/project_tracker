@@ -1,8 +1,3 @@
-<?php
-
-helper("svg_icon");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,17 +16,10 @@ helper("svg_icon");
     <script src="js/selectable.js" defer></script>
 </head>
 
-
-<style>
-    [data-select-all-target] input[checked=true] {
-        opacity: 0.1 !important;
-    }
-</style>
-
 <body>
     <?php echo view("components/header/header"); ?>
     <main>
-        <section class="container py-4" data-select-state-target>
+        <section class="container py-4 " data-select-state-target>
             <form action="" method="POST">
                 <div class="pb-4 d-flex justify-content-between">
                     <div class="fs-4 pe-5">
@@ -50,13 +38,29 @@ helper("svg_icon");
                         </button>
                     </div>
                 </div>
-                <table class="table">
+                <div class="pb-2 fw-medium fs-body d-flex align-items-center justify-content-start">
+                    <span>Show&nbsp;</span>
+                    <select name="limit" class="mx-2 form-control min-width fw-medium fs-body" id="entryLimit">
+                        <?php
+                        $limitSelections = [10, 20];
+                        foreach ($limitSelections as $selection) {
+                            echo "<option "
+                                . ($limit == $selection ? "selected='selected'" : "")
+                                . ">"
+                                . $selection
+                                . "</option>";
+                        }
+                        ?>
+                    </select>
+                    <span>&nbsp;entries</span>
+                </div>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>
                                 <input type="checkbox" id="selectAllProjects" data-select-all-toggle>
                             </th>
-                            <td>#</td>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Date</th>
                             <th>Manager</th>
@@ -65,14 +69,33 @@ helper("svg_icon");
                     </thead>
                     <tbody data-select-all-target>
                         <?php
-                        foreach ($projects as $project) {
-                            echo view("components/projects/project_row", [
-                                "project" => $project
-                            ]);
+                        for ($i = 0; $i < $limit; $i++) {
+                            $project = $i > count($projects) - 1 ? null :  $projects[$i];
+                            echo $project == null ?
+                                "" :
+                                view("components/projects/project_row", [
+                                    "project" => $project
+                                ]);
+                            // echo view("components/projects/project_row", [
+                            //     "project" => $project
+                            // ]);
                         }
                         ?>
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-end gap-1">
+                    <?php
+                    foreach ($paginations as $pagination) {
+                        echo '<a href="'
+                            . $pagination->url
+                            . '" class="btn '
+                            . ($page == $pagination->page ? 'btn-outline-dark' : 'muted')
+                            . '">'
+                            . $pagination->page
+                            . '</a>';
+                    }
+                    ?>
+                </div>
             </form>
 
         </section>
@@ -84,6 +107,12 @@ helper("svg_icon");
     deleteButton.addEventListener("click", () => {
         let selectTarges = document.querySelectorAll("[data-select-all-target] input[type='checkbox']");
         console.log(selectTarges.length);
+    });
+
+    let entryLimitSelector = document.querySelector("#entryLimit");
+    entryLimitSelector.addEventListener("change", () => {
+        let value = entryLimitSelector.value;
+        window.location.href = `<?php echo base_url("projects?limit=") ?>${value}`;
     });
 </script>
 

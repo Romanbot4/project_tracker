@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('projects') ?>">
+                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('projects?limit=10') ?>">
                             Projects
                         </a>
                     </li>

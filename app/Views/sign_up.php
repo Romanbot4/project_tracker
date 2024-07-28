@@ -1,5 +1,3 @@
-<?php helper("svg_icon") ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

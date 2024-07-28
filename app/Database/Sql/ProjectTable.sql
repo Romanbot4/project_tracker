@@ -18,3 +18,5 @@ ALTER TABLE projects ADD COLUMN end_at DATETIME NOT NULL;
 SELECT * FROM projects LIMIT 5;
 
 DELETE FROM projects WHERE id IN (5,6);
+
+SELECT COUNT(id) FROM projects;

@@ -36,7 +36,7 @@ class FeatureModel extends Model
     {
         $pagination = new PaginationRequestEntity($data);
         $sql = "SELECT * FROM features WHERE project_id=? LIMIT ? OFFSET ?;";
-        $query = $this->db->query($sql, [$projectId, $pagination->limit, $pagination->getOffset()]);
+        $query = $this->db->query($sql, [$projectId, $pagination->limit, $pagination->offset]);
         $result = $query->getResult();
         $value = [];
         foreach ($result as $row) {
@@ -50,7 +50,7 @@ class FeatureModel extends Model
     {
         $pagination = new PaginationRequestEntity($data);
         $sql = "SELECT * FROM features LIMIT ? OFFSET ?;";
-        $query = $this->db->query($sql, [$pagination->limit, $pagination->getOffset()]);
+        $query = $this->db->query($sql, [$pagination->limit, $pagination->offset]);
         $result = $query->getResult();
         $value = [];
         foreach ($result as $row) {

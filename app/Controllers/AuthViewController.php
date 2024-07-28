@@ -10,6 +10,8 @@ use Config\Services;
 use CodeIgniter\Session\Session;
 use Throwable;
 
+helper("svg_icon");
+
 class AuthViewController extends BaseController
 {
     private AuthenticationRepository $authenticationRepository;

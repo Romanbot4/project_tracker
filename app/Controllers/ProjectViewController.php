@@ -4,10 +4,14 @@ namespace App\Controllers;
 
 use App\Core\Failures\BadRequestFailure;
 use App\Domain\Entities\Request\CreateProjectRequestEntity;
+use App\Domain\Entities\Request\PaginationRequestEntity;
 use App\Domain\Entities\UserEntity;
 use App\Infrastructure\Repositories\ProjectRepository;
 use CodeIgniter\Session\Session;
 use Config\Services;
+
+helper("svg_icon");
+helper("pagination");
 
 class ProjectViewController extends BaseController
 {
@@ -23,11 +27,14 @@ class ProjectViewController extends BaseController
 
     public function projects(): string
     {
-
-        $projects = $this->projectRepository->list([]);
+        $pageReq = new PaginationRequestEntity((array) $this->request->getGet());
+        $projects = $this->projectRepository->list($pageReq);
         return view('projects', [
             'user' => $this->user,
-            'projects' => $projects,
+            'projects' => $projects->data,
+            'paginations' => get_paginated_links($projects, base_url("projects")),
+            'limit' => $pageReq->limit,
+            'page' => $pageReq->page,
         ]);
     }
 
@@ -37,7 +44,8 @@ class ProjectViewController extends BaseController
     }
 
 
-    public function removeByIdsRequest() {
+    public function removeByIdsRequest()
+    {
         $ids = $this->request->getPost()["items"] ?? [];
         $this->projectRepository->removeByIds($ids);
         return redirect("projects");

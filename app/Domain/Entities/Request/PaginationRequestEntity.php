@@ -8,6 +8,7 @@ class PaginationRequestEntity extends RequestEntity
 {
     public int $page;
     public int $limit;
+    public int $offset;
 
     protected $attributes = [
         "page" => null,
@@ -31,10 +32,6 @@ class PaginationRequestEntity extends RequestEntity
         $this->validate($data);
         $this->page = $data["page"];
         $this->limit = $data["limit"];
-    }
-
-    public function getOffset(): int
-    {
-        return ($this->page - 1) * $this->limit;
+        $this->offset = ($this->page - 1) * $this->limit;
     }
 }

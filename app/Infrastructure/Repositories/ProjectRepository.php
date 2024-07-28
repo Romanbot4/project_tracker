@@ -2,9 +2,11 @@
 
 namespace App\Infrastructure\Repositories;
 
+use App\Domain\Entities\PaginatedResponseEntity;
 use App\Domain\Entities\ProjectEntity;
 use App\Domain\Repositories\IProjectRepository;
 use App\Domain\Entities\Request\CreateProjectRequestEntity;
+use App\Domain\Entities\Request\PaginationRequestEntity;
 use App\Infrastructure\Models\ProjectModel;
 
 class ProjectRepository implements IProjectRepository
@@ -20,10 +22,24 @@ class ProjectRepository implements IProjectRepository
         return $this->projectModel->getById($id);
     }
 
-    public function list(?array $data): array
+    public function list(PaginationRequestEntity $req): PaginatedResponseEntity
     {
-        return $this->projectModel->list($data);
+
+        $count = $this->getRowCount();
+        $data = $this->projectModel->list($req);
+        return  new PaginatedResponseEntity(
+            $data,
+            $req->limit,
+            $req->page,
+            $count,
+        );
     }
+
+    public function getRowCount(): int
+    {
+        return $this->projectModel->getRowCount();
+    }
+
 
     public function create(CreateProjectRequestEntity $form): ProjectEntity
     {
@@ -35,7 +51,8 @@ class ProjectRepository implements IProjectRepository
         return $this->projectModel->remove($id);
     }
 
-    public function removeByIds(array $ids) {
+    public function removeByIds(array $ids)
+    {
         return $this->projectModel->removeByIds($ids);
     }
 
