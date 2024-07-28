@@ -25,6 +25,7 @@ class ProjectModel extends Model
         $sql = "SELECT * FROM projects WHERE id=? LIMIT 1;";
         $query = $this->db->query($sql, [$id]);
         $result = $query->getResult();
+        
         if (count($result) > 0) {
             return new ProjectEntity((array) $result[0]);
         }

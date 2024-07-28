@@ -8,8 +8,14 @@ use CodeIgniter\Validation\ValidationInterface;
 
 class RequestEntity  extends Entity
 {
+    public function __construct(?array $data = null)
+    {
+        parent::__construct($data);
+        $this->validate($data);
+    }
+
     protected ValidationInterface $validation;
-    
+
     public function validate(array $data = null): bool
     {
         $this->validation = \Config\Services::validation();

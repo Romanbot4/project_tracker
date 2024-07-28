@@ -12,14 +12,6 @@ class SignUpRequestEntity extends RequestEntity
     public string $password;
     public string $confirmPassword;
 
-    protected $attributes = [
-        "first_name" => null,
-        "last_name" => null,
-        "email" => null,
-        "password" => null,
-        "confirm_password" => null,
-    ];
-
     protected array $rules = [
         "first_name" => "required|min_length[3]",
         "last_name" => "required|min_length[3]",
@@ -31,7 +23,6 @@ class SignUpRequestEntity extends RequestEntity
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $this->validate($data);
         $this->firstName = $data["first_name"];
         $this->lastName = $data["last_name"];
         $this->email = $data["email"];

@@ -16,6 +16,7 @@ $routes->get('/login', 'AuthViewController::login');
 $routes->post('/login', 'AuthViewController::loginRequest');
 $routes->get('/sign-up', 'AuthViewController::signUp');
 $routes->post('/sign-up', 'AuthViewController::signUpRequest');
+$routes->get('/logout', 'AuthViewController::logOutRequest');
 
 //Project
 $routes->get('/projects', 'ProjectViewController::projects');
@@ -56,6 +57,10 @@ $routes->group('api/v1', function ($routes) {
         $routes->delete('(:any)', 'FeatureController::remove/$1');
     });
 
+    $routes->group('teams', ['namespace' => 'App\Controllers\Api'], function ($routes) {
+        $routes->post('(:any)', 'TeamController::select/$1');
+    });
+
     $routes->group('project-features', ['namespace' => 'App\Controllers\Api'], function ($routes) {
         $routes->get('(:any)', 'FeatureController::listByProject/$1');
     });
@@ -63,3 +68,6 @@ $routes->group('api/v1', function ($routes) {
         $routes->get('email', 'SearchController::searchUserByEmail');
     });
 });
+
+
+

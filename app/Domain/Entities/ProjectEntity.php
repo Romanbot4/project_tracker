@@ -14,29 +14,8 @@ class ProjectEntity extends BaseEntity
     public DateTime $createdAt;
     public DateTime $updatedAt;
 
-    protected $attribtes = [
-        "id" => null,
-        "title" => null,
-        "description" => null,
-        "endAt" => null,
-        "startAt" => null,
-        "createdAt" => null,
-        "updatedAt" => null,
-    ];
-
-    protected $datamap = [
-        "startAt" => "start_at",
-        "endAt" => "end_at",
-        "createdAt" => "created_at",
-        "updatedAt" => "updated_at",
-    ];
-
     protected $casts = [
         "id" => "integer",
-        "startAt" => "timestamp",
-        "endAt" => "timestamp",
-        "createdAt" => "timestamp",
-        "updatedAt" => "timestamp",
     ];
 
     public function __construct(array $data)

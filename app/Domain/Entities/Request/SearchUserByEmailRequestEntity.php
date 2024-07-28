@@ -9,10 +9,6 @@ class SearchUserByEmailRequestEntity extends RequestEntity
 {
     public string $email;
 
-    protected $attributes = [
-        "email" => null,
-    ];
-
     protected $rules = [
         "email" => "required|min_length[8]|max_length[255]",
     ];
@@ -20,7 +16,6 @@ class SearchUserByEmailRequestEntity extends RequestEntity
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $this->validate($data);
         $this->email = $data["email"];
     }
 }

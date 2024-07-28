@@ -14,20 +14,9 @@ class UserEntity extends BaseEntity
     public DateTime $updatedAt;
     public DateTime $createdAt;
 
-    protected $attributes = [
-        "id" => null,
-        "firstName" => null,
-        "lastName"  => null,
-        "email" => null,
-        "updatedAt" => null,
-        "createdAt" => null,
-    ];
-
-    protected $datamap = [
-        "firstName" => "first_name",
-        "lastName" => "last_name",
-        "createdAt" => "created_at",
-        "updatedAt" => "updated_at",
+    protected $hiddenFields = [
+        "updated_at",
+        "created_at",
     ];
 
     protected $casts = [
@@ -49,7 +38,7 @@ class UserEntity extends BaseEntity
     public function jsonSerialize()
     {
         $return = parent::jsonSerialize();
-        $return["displayName"] = $this->attributes["first_name"] . " " . $this->attributes["last_name"];
+        $return["display_name"] = $this->displayName;
         return $return;
     }
 }

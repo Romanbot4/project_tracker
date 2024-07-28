@@ -59,7 +59,7 @@
                 <hr class="dropdown-divider">
             </li>
             <li>
-                <a class="px-4 py-2 text-body d-flex flex-col align-items-center justify-content-center" href="#">
+                <a class="px-4 py-2 text-body d-flex flex-col align-items-center justify-content-center" href="<?php echo base_url("logout") ?>">
                     <div class="flex-grow-1 d-flex flex-col">
                         <i class="bi bi-box-arrow-left"></i>
                         <span class="ps-2">

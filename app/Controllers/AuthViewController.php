@@ -94,4 +94,9 @@ class AuthViewController extends BaseController
             ]);
         }
     }
+
+    public function logOutRequest() {
+        $this->session->destroy();
+        return redirect("/");
+    }
 }

@@ -40,8 +40,9 @@ class RefreshTokenModel extends Model
     public function getByToken(string $id): RefreshTokenEntity
     {
         $sql = "SELECT * FROM refresh_token WHERE refresh_id=? LIMIT 1";
-        $result = $this->db->query($sql);
-        if (count($result->getResult()) > 0) {
+        $query = $this->db->query($sql);
+        $result = $query->getResult();
+        if (count($result) > 0) {
             return new RefreshTokenEntity((array) $result[0]);
         } else {
             throw new NotFoundFailure();

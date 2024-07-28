@@ -7,12 +7,7 @@ use App\Domain\Entities\RequestEntity;
 class CreateDivisionRequestEntity extends RequestEntity
 {
     public string $title;
-    public string|null $description;
-
-    protected $attributes = [
-        "title" => null,
-        "description" => null,
-    ];
+    public ?string $description;
 
     protected $rules = [
         "title" => "required|min_length[3]|max_length[255]",
@@ -21,9 +16,10 @@ class CreateDivisionRequestEntity extends RequestEntity
 
     public function __construct(array $data)
     {
+        $data["description"] = array_key_exists("description", $data)  ? $data["description"] : null;
+        
         parent::__construct($data);
-        $this->validate($data);
         $this->title = $data["title"];
-        $this->description = array_key_exists("description", $data)  ? $data["description"] : null;
+        $this->description = $data["description"];
     }
 }

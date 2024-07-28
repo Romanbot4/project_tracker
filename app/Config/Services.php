@@ -7,6 +7,7 @@ use App\Domain\Repositories\IDivisionRepository;
 use App\Domain\Repositories\IFeatureRepository;
 use App\Domain\Repositories\IProjectRepository;
 use App\Domain\Repositories\ISearchRepository;
+use App\Domain\Repositories\ITeamRepository;
 use App\Domain\Repositories\ITokenRepository;
 use App\Domain\Repositories\IUserCredentialRepository;
 use App\Domain\Repositories\IUserRepository;
@@ -25,6 +26,7 @@ use App\Infrastructure\Repositories\TokenRepository;
 use App\Infrastructure\Repositories\UserCredentialRepository;
 use App\Infrastructure\Repositories\UserRepository;
 use App\Infrastructure\Repositories\ProjectRepository;
+use App\Infrastructure\Repositories\TeamRepository;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -113,5 +115,13 @@ class Services extends BaseService
         }
 
         return new FeatureRepository(new FeatureModel());
+    }
+
+    public static function teamRepository($getShared = true): ITeamRepository
+    {
+        if ($getShared) {
+            return static::getSharedInstance("teamRepository");
+        }
+        return new TeamRepository();
     }
 }

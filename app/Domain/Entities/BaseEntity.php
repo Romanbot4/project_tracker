@@ -3,6 +3,7 @@
 namespace App\Domain\Entities;
 
 use CodeIgniter\Entity\Entity;
+use CodeIgniter\I18n\Time;
 
 helper("datetime");
 
@@ -13,16 +14,20 @@ class BaseEntity extends Entity
         parent::__construct($data);
     }
 
+    protected $hiddenFields = [];
+
     public function jsonSerialize()
     {
         $return = parent::jsonSerialize();
-        if (array_key_exists("created_at", $this->attributes)) {
-            $return["createdAt"] = dateTimeEncodeUTC($this->attributes["created_at"]);
+        $values = [];
+        $allowedFields = array_diff(array_keys($return), $this->hiddenFields);
+        foreach ($allowedFields as $key) {
+            $value = $return[$key];
+            if ($value instanceof Time) {
+                $value = dateTimeEncodeUTC($value);
+            }
+            $values[$key] = $value;
         }
-
-        if (array_key_exists("updated_at", $this->attributes)) {
-            $return["updatedAt"] = dateTimeEncodeUTC($this->attributes["updated_at"]);
-        }
-        return $return;
+        return $values;
     }
 }

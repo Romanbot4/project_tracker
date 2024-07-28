@@ -6,12 +6,6 @@ use CodeIgniter\Entity\Entity;
 
 class SearchUserResponseEntity extends Entity
 {
-    protected $attributes = [
-        "id" => null,
-        "displayName" => null,
-        "email" => null,
-    ];
-
     public int $id;
     public string $displayName;
     public string $email;
@@ -23,7 +17,7 @@ class SearchUserResponseEntity extends Entity
     ) {
         parent::__construct([
             "id" => $id,
-            "displayName" => $displayName,
+            "display_name" => $displayName,
             "email" => $email,
         ]);
         $this->id = $id;
