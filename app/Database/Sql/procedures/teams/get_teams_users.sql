@@ -15,6 +15,3 @@ BEGIN
 END //
 
 DELIMITER;
-
-
-CALL GetTeamUsers(1);

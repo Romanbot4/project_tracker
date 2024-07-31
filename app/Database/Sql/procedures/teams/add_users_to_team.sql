@@ -14,6 +14,3 @@ BEGIN
 END //
 
 DELIMITER;
-
-
-CALL AddUserToTeam(1,2, 'LEADER');

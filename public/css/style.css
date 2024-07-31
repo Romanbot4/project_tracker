@@ -190,3 +190,15 @@
 .min-width {
   width: min-content !important;
 }
+
+.card-grid {
+	--gap: var(--gap-column);
+
+	display: grid;
+	row-gap: var(--gap);
+	column-gap: var(--gap);
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(calc(var(--size-100) * 30 * var(--scale)), 1fr)
+	);
+}

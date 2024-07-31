@@ -40,12 +40,12 @@ class ApiController extends ResourceController
 
     public function resolve(\Throwable $th): ResponseInterface
     {
-        // $environment = $_ENV["CI_ENVIRONMENT"];
-        // if ($environment == "production") {
-        if ($th instanceof NotFoundFailure) return $this->notFound($th->reason);
-        if ($th instanceof BadRequestFailure) return $this->badRequest($th->reason, $th->errors);
-        // return $this->failServerError($th->getMessage());
-        // }
+        $environment = $_ENV["CI_ENVIRONMENT"];
+        if ($environment == "production") {
+            if ($th instanceof NotFoundFailure) return $this->notFound($th->reason);
+            if ($th instanceof BadRequestFailure) return $this->badRequest($th->reason, $th->errors);
+            return $this->failServerError($th->getMessage());
+        }
         throw $th;
     }
 }

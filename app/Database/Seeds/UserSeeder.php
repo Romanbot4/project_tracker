@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 50; $i++) {
-            $password = $faker->password(10);
+            $password = "meiktila001";//$faker->password(10);
             $userRepo->create(new SignUpRequestEntity([
                 "first_name" => $faker->firstName(),
                 "last_name" => $faker->lastName(),

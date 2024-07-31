@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg border-bottom">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand logo-word-mark" href="<?php echo base_url() ?>" alt="Project Tracker">
                 <?php echo svg_icon(base_url("assets/logo/wordmark.svg")) ?>
             </a>
@@ -17,6 +17,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo base_url('projects?limit=10') ?>">
                             Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('teams?limit=10') ?>">
+                            Teams
                         </a>
                     </li>
                     <li class="nav-item">
