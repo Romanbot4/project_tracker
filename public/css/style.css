@@ -202,3 +202,7 @@
 		minmax(calc(var(--size-100) * 30 * var(--scale)), 1fr)
 	);
 }
+
+.team-card {
+  cursor: pointer;
+}

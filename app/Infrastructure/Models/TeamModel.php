@@ -76,8 +76,8 @@ class TeamModel extends Model
 
     public function create(CreateTeamRequestEntity $form): TeamDetailsEntity
     {
-        $sql = "INSERT INTO teams (title, description) VALUES  (?,?);";
-        $result = $this->db->query($sql, [$form->title, $form->description]);
+        $sql = "INSERT INTO teams (title, description, tag_color) VALUES  (?,?,?);";
+        $result = $this->db->query($sql, [$form->title, $form->description, $form->tagColor]);
         $id = $this->db->insertID();
         return $this->getById($id);
     }
@@ -100,8 +100,8 @@ class TeamModel extends Model
 
     public function edit(int $id, CreateTeamRequestEntity $form): TeamDetailsEntity
     {
-        $sql = "UPDATE teams SET title=?, description=? WHERE id=?;";
-        $result = $this->db->query($sql, [$form->title, $form->description, $id]);
+        $sql = "UPDATE teams SET title=?, description=?, tag_color=? WHERE id=?;";
+        $result = $this->db->query($sql, [$form->title, $form->description, $id, $form->tagColor]);
         if ($result === true) return $this->getById($id);
         throw new BadRequestFailure($this->validation->getErrors());
     }

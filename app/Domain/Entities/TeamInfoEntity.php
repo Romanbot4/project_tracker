@@ -10,6 +10,7 @@ class TeamInfoEntity extends BaseEntity
     public string $title;
     public string $description;
     public int $userCount;
+    public ?string $tagColor;
     public DateTime $createdAt;
     public DateTime $updatedAt;
 
@@ -32,5 +33,6 @@ class TeamInfoEntity extends BaseEntity
         $this->userCount = $data["user_count"];
         $this->createdAt = new DateTime($data["created_at"]);
         $this->updatedAt = new DateTime($data["updated_at"]);
+        $this->tagColor = array_key_exists("tag_color", $data) ? $data["tag_color"] : null;
     }
 }
